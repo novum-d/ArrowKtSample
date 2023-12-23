@@ -11,6 +11,7 @@ composeBom = "2023.10.01"
 
 arrow = "1.2.1"
 kotest = "5.8.0"
+detekt = "1.23.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -36,10 +37,12 @@ arrow-opticsPlugin = { module = "io.arrow-kt:arrow-optics-ksp-plugin", version.r
 kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest" }
 kotest-runnerJUnit4 = { module = "io.kotest:kotest-runner-junit4", version.ref = "kotest" }
 kotest-propertyArrow = { module = "io.kotest.extensions:kotest-property-arrow", version.ref = "arrow" }
-kotest-arrowCore= { module = "io.arrow-kt:arrow-core", version.ref = "arrow" }
+kotest-arrowCore = { module = "io.arrow-kt:arrow-core", version.ref = "arrow" }
 kotest-assertionsArrow = { module = "io.kotest.extensions:kotest-assertions-arrow", version.ref = "arrow" }
+
+detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }

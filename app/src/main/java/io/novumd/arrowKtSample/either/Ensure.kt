@@ -3,7 +3,6 @@ package io.novumd.arrowKtSample.either
 import arrow.core.raise.Raise
 import arrow.core.raise.ensure
 
-
 data class User(val id: Int)
 
 data class UserNotFound(val message: String)
