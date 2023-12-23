@@ -48,6 +48,12 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+    configurations.all {
+        resolutionStrategy {
+            exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-debug")
+        }
+    }
 }
 
 dependencies {
