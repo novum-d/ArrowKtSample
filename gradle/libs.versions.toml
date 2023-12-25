@@ -35,7 +35,7 @@ arrow-optics = { module = "io.arrow-kt:arrow-optics", version.ref = "arrow" }
 arrow-opticsPlugin = { module = "io.arrow-kt:arrow-optics-ksp-plugin", version.ref = "arrow" }
 
 kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest" }
-kotest-runnerJUnit4 = { module = "io.kotest:kotest-runner-junit4", version.ref = "kotest" }
+kotest-runnerJUnit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 kotest-propertyArrow = { module = "io.kotest.extensions:kotest-property-arrow", version.ref = "arrow" }
 kotest-arrowCore = { module = "io.arrow-kt:arrow-core", version.ref = "arrow" }
 kotest-assertionsArrow = { module = "io.kotest.extensions:kotest-assertions-arrow", version.ref = "arrow" }
