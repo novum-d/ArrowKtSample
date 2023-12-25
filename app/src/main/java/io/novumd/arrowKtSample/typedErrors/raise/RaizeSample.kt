@@ -1,15 +1,9 @@
-package io.novumd.arrowKtSample.either
+package io.novumd.arrowKtSample.typedErrors.raise
 
 import arrow.core.raise.Raise
 import arrow.core.raise.ensure
-
-data class User(val id: Int)
-
-data class UserNotFound(val message: String)
-
-// fun User.isValid(): Either<UserNotFound, Unit> = either {
-//     ensure(id > 0) { UserNotFound("User without a valid id: $id") }
-// }
+import io.novumd.arrowKtSample.model.User
+import io.novumd.arrowKtSample.model.UserNotFound
 
 context(Raise<UserNotFound>)
 fun User.isValid() = ensure(id > 0) { UserNotFound("User without a valid id: $id") }
