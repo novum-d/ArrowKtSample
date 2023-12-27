@@ -131,11 +131,12 @@ complexity:
     threshold: 60
   LongParameterList:
     active: true
-    functionThreshold: 6
     constructorThreshold: 7
-    ignoreDefaultParameters: false
     ignoreDataClasses: true
     ignoreAnnotatedParameter: [ ]
+    # コンポーザブルは、関数の引数の一般的な数を超える場合があります (ただし、ほとんどの場合はデフォルト値が使用されます)。
+    functionThreshold: 100 # Settings for compose
+    ignoreDefaultParameters: true # Settings for Compose
   MethodOverloading:
     active: false
     threshold: 6
@@ -331,9 +332,10 @@ naming:
   FunctionNaming:
     active: true
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**' ]
-    functionPattern: '[a-z][a-zA-Z0-9]*'
     excludeClassPattern: '$^'
-    ignoreAnnotated: [ 'Composable' ] # ignore Composable annotation
+    # Unit を返す @Composable 関数は PascalCase を使用して名前が付けられます
+    ignoreAnnotated: [ 'Composable' ] # Settings for compose
+    functionPattern: '[a-z][a-zA-Z0-9]*' # Settings for compose
   FunctionParameterNaming:
     active: true
     parameterPattern: '[a-z][A-Za-z0-9]*'
@@ -365,9 +367,10 @@ naming:
     packagePattern: '[a-z]+(\.[a-z][A-Za-z0-9]*)*'
   TopLevelPropertyNaming:
     active: true
-    constantPattern: '[A-Z][_A-Z0-9]*'
     propertyPattern: '[A-Za-z][_A-Za-z0-9]*'
     privatePropertyPattern: '_?[A-Za-z][_A-Za-z0-9]*'
+    # Compose ガイドラインでは、トップレベルの定数に CamelCase を規定しています。
+    constantPattern: '[A-Z][A-Za-z0-9]*' # Settings for compose
   VariableMaxLength:
     active: false
     maximumVariableNameLength: 64
@@ -616,15 +619,18 @@ style:
       - '1'
       - '2'
     ignoreHashCodeFunction: true
-    ignorePropertyDeclaration: false
     ignoreLocalVariableDeclaration: false
     ignoreConstantDeclaration: true
-    ignoreCompanionObjectPropertyDeclaration: true
     ignoreAnnotation: false
     ignoreNamedArgument: true
     ignoreEnums: false
     ignoreRanges: false
     ignoreExtensionFunctions: true
+
+    # Color(0xFFEA6D7E) などのオブジェクトを宣言するクラス/コンパニオン オブジェクト/トップレベル プロパティは、名前付きパラメーター (つまり Color(color = 0xFFEA6D7E)) を指定しない場合、違反とみなされます。
+    ignorePropertyDeclaration: true # Settings for compose
+    ignoreCompanionObjectPropertyDeclaration: true # Settings for compose
+
   MandatoryBracesIfStatements: # ifで中括弧がない場合、無効
     active: true
   MandatoryBracesLoops: # for, whileで中括弧がない場合、無効
@@ -741,6 +747,8 @@ style:
   UnusedPrivateMember:
     active: true
     allowedNames: ''
+    # 検出では、コンポーザブル プレビュー関数、つまり @Preview でマークされた関数が未使用として表示される場合があります。
+    ignoreAnnotated: [ 'Preview' ] # Settings for compose
   UnusedPrivateProperty:
     active: true
     allowedNames: '_|ignored|expected|serialVersionUID'
@@ -785,6 +793,53 @@ style:
     active: true
     excludeImports:
       - 'java.util.*'
+
+# Compose Rules
+TwitterCompose:
+  CompositionLocalAllowlist:
+    active: true
+    # You can optionally define a list of CompositionLocals that are allowed here
+    # allowedCompositionLocals: LocalSomething,LocalSomethingElse
+  CompositionLocalNaming:
+    active: true
+  ContentEmitterReturningValues:
+    active: true
+    # You can optionally add your own composables here
+    # contentEmitters: MyComposable,MyOtherComposable
+  ModifierComposable:
+    active: true
+  ModifierMissing:
+    active: true
+  ModifierReused:
+    active: true
+  ModifierWithoutDefault:
+    active: true
+  MultipleEmitters:
+    active: true
+      # You can optionally add your own composables here
+    # contentEmitters: MyComposable,MyOtherComposable
+  MutableParams:
+    active: true
+  ComposableNaming:
+    active: true
+    # You can optionally disable the checks in this rule for regex matches against the composable name (e.g. molecule presenters)
+    # allowedComposableFunctionNames: .*Presenter,.*MoleculePresenter
+  ComposableParamOrder:
+    active: true
+  PreviewNaming:
+    active: true
+  PreviewPublic:
+    active: true
+    # You can optionally disable that only previews with @PreviewParameter are flagged
+    # previewPublicOnlyIfParams: false
+  RememberMissing:
+    active: true
+  UnstableCollections:
+    active: true
+  ViewModelForwarding:
+    active: true
+  ViewModelInjection:
+    active: true
 
 formatting:
   active: true

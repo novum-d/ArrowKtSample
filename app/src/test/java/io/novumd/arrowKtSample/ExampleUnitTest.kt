@@ -23,7 +23,6 @@ import io.novumd.arrowKtSample.typedErrors.raise.isValid
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 
-// @RunWith(KotestTestRunner::class)
 class ExampleUnitTest : FreeSpec({
     "TypedErrors" - {
         "Raise" {
