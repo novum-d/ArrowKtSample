@@ -92,21 +92,11 @@ dependencies {
     testImplementation(libs.kotest.propertyArrow)
     testImplementation(libs.kotest.arrowCore)
 
-    detektPlugins(libs.detekt.formatting)
     detektPlugins(libs.detekt.compose.rules)
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class).all {
     kotlinOptions.freeCompilerArgs = listOf("-Xcontext-receivers")
-}
-
-// tasks.withType(io.gitlab.arturbosch.detekt.Detekt::class).all {
-//     autoCorrect = true
-// }
-
-detekt {
-    autoCorrect = true
-    buildUponDefaultConfig = true
 }
 
 

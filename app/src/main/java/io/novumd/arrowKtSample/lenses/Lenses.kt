@@ -14,34 +14,31 @@ data class City(val name: String, val country: String) {
 }
 
 @optics
-data class InputErrorState private constructor(val domainError: DomainError) {
+data class InputErrorState(val sessionErrMsg: String? = null) {
 
-
-    companion object {
-        fun from (domainError: DomainError)  = InputErrorState(domainError)
-    }
-}
-
-
-fun handleError(error: DomainError) {
-    copy {
-        when (error) {
-            DomainError.WrongPasscode -> InputPasscodeState.isWrongPasscodeError set true
-            DomainError.Session -> InputPasswor.isWrongPasscodeError set true
-            else -> {}
+    fun handleError(error: DomainErr) {
+        copy {
+            when (error) {
+                DomainErr.WrongPasscode -> {}
+                is DomainErr.Session -> InputErrorState.sessionErrMsg set error.errMsg
+                else -> {}
+            }
         }
     }
+
+    companion object
 }
 
-sealed interface DomainError {
 
-    interface WithMessage : DomainError {
-        val message: String
+sealed interface DomainErr {
+
+    interface WithMessage : DomainErr {
+        val errMsg: String
     }
 
-    data object WrongPasscode : DomainError
+    data object WrongPasscode : DomainErr
 
-    data class Session(override val message: String) : WithMessage
+    data class Session(override val errMsg: String) : WithMessage
 }
 
 
