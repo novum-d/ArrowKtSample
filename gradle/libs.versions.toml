@@ -1,5 +1,5 @@
 [versions]
-agp = "8.3.0-beta02"
+agp = "8.3.0-rc01"
 kotlin = "1.9.0"
 coreKtx = "1.12.0"
 junit = "4.13.2"
@@ -36,6 +36,7 @@ arrow-core = { module = "io.arrow-kt:arrow-core", version.ref = "arrow" }
 arrow-optics = { module = "io.arrow-kt:arrow-optics", version.ref = "arrow" }
 arrow-opticsPlugin = { module = "io.arrow-kt:arrow-optics-ksp-plugin", version.ref = "arrow" }
 
+# https://github.com/LeoColman/kotest-android
 kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest" }
 kotest-runnerJUnit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 kotest-propertyArrow = { module = "io.kotest.extensions:kotest-property-arrow", version.ref = "arrow" }
